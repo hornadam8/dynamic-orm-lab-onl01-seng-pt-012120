@@ -52,7 +52,9 @@ class InteractiveRecord
     DB[:conn].execute(sql, name)
   end
   
-  def self.find_by()
+  def self.find_by(options={})
+    options.each{|property,value| DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE ? = ?",property,value)}
+  end
 
 
 end
